@@ -118,16 +118,11 @@
         function updateClock() {
             const now = new Date();
 
-            // 12小時制時間
-            let hours = now.getHours();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            if (hours === 0) {
-                hours = 12;
-            }
+            // 月份（1-12）
+            const month = now.getMonth() + 1;
 
-            // 分鐘
-            const minutes = String(now.getMinutes()).padStart(2, '0');
+            // 日期（1-31）
+            const date = now.getDate();
 
             // 星期
             const daysArray = [
@@ -142,12 +137,12 @@
             const dayName = daysArray[now.getDay()];
 
             // 更新 DOM
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('hours').textContent = String(month).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(date).padStart(2, '0');
             document.getElementById('day').textContent = dayName;
         }
 
-        // 每秒更新一次
+        // 每天更新一次即可（但為了即時看到效果，仍每秒更新）
         setInterval(updateClock, 1000);
 
         // 初始化顯示
