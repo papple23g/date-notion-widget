@@ -22,7 +22,7 @@
             font-family: 'Arial', 'Helvetica', sans-serif;
             background: #FAFAFA;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             color: rgba(255, 255, 255, 1);
             box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
@@ -31,6 +31,7 @@
         .clock-container {
             display: flex;
             gap: 5vw;
+            width: 100vw;
         }
 
         .card {
@@ -43,7 +44,7 @@
             align-items: center;
             justify-content: center;
             gap: 3vw;
-            width: 40vw;
+            width: 47.5vw;
             min-height: 50vw;
         }
 
@@ -69,6 +70,7 @@
             border-color: rgba(0, 0, 0, 0);
             background: unset;
             border-image: none;
+            align-self: flex-end;
         }
 
         /* 響應式設計 */
@@ -129,13 +131,13 @@
 
             // 星期
             const daysArray = [
-                'SUNDAY',
-                'MONDAY',
-                'TUESDAY',
-                'WEDNESDAY',
-                'THURSDAY',
-                'FRIDAY',
-                'SATURDAY'
+                'SUN',
+                'MON',
+                'TUE',
+                'WED',
+                'THU',
+                'FRI',
+                'SAT'
             ];
             const dayName = daysArray[now.getDay()];
 
