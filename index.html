@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>數位時鐘 Widget</title>
-    <link href="https://cdn.jsdelivr.net/npm/@fontsource/dseg7@5.0.0/index.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -40,7 +39,8 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            min-width: 200px;
+            width: 182px;
+            min-height: 240px;
             transform: rotateY(-8deg) rotateX(2deg);
             transition: all 0.3s ease;
         }
@@ -60,9 +60,9 @@
         }
 
         .big-number {
-            font-family: 'DSEG7 Classic', 'Courier New', monospace;
-            font-size: 115px;
-            font-weight: 400;
+            font-family: 'Yu Gothic UI Semibold', 'Yu Gothic UI', sans-serif;
+            font-size: 120px;
+            font-weight: 700;
             color: #9B1B30;
             line-height: 1;
             letter-spacing: -3px;
@@ -142,7 +142,7 @@
     <div class="clock-container">
         <div class="card time-card">
             <div class="big-number" id="hours">07</div>
-            <div class="label" id="ampm">PM</div>
+            <div class="label" style="visibility: hidden;">PLACEHOLDER</div>
         </div>
         <div class="card date-card">
             <div class="big-number" id="minutes">35</div>
@@ -179,7 +179,6 @@
 
             // 更新 DOM
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('ampm').textContent = ampm;
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('day').textContent = dayName;
         }
