@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>數位時鐘 Widget</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/dseg7@5.0.0/index.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -32,7 +34,7 @@
             border-radius: 20px;
             padding: 45px 55px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1),
-                        0 3px 10px rgba(0, 0, 0, 0.05);
+                0 3px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,7 +48,7 @@
         .card:hover {
             transform: rotateY(0deg) rotateX(0deg) translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-                        0 5px 15px rgba(0, 0, 0, 0.08);
+                0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .date-card {
@@ -58,14 +60,16 @@
         }
 
         .big-number {
+            font-family: 'DSEG7 Classic', 'Courier New', monospace;
             font-size: 115px;
-            font-weight: 700;
+            font-weight: 400;
             color: #9B1B30;
             line-height: 1;
             letter-spacing: -3px;
         }
 
         .label {
+            font-family: 'Arial', 'Helvetica', sans-serif;
             font-size: 22px;
             font-weight: 700;
             color: #9B1B30;
@@ -76,37 +80,45 @@
         /* 響應式設計 */
         @media (max-width: 768px) {
             .clock-container {
-                flex-direction: column;
                 gap: 20px;
             }
 
             .card {
-                padding: 40px 50px;
-                min-width: 180px;
-                transform: rotateY(0deg);
+                padding: 40px 45px;
+                min-width: 160px;
+                transform: rotateY(-8deg) rotateX(2deg);
+            }
+
+            .date-card {
+                transform: rotateY(8deg) rotateX(2deg);
             }
 
             .big-number {
-                font-size: 90px;
-            }
-
-            .label {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                padding: 30px 40px;
-                min-width: 150px;
-            }
-
-            .big-number {
-                font-size: 70px;
+                font-size: 85px;
             }
 
             .label {
                 font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clock-container {
+                gap: 15px;
+            }
+
+            .card {
+                padding: 30px 35px;
+                min-width: 130px;
+            }
+
+            .big-number {
+                font-size: 65px;
+            }
+
+            .label {
+                font-size: 16px;
+                letter-spacing: 2px;
             }
         }
 
@@ -125,6 +137,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="clock-container">
         <div class="card time-card">
@@ -132,7 +145,7 @@
             <div class="label" id="ampm">PM</div>
         </div>
         <div class="card date-card">
-            <div class="big-number" id="date">15</div>
+            <div class="big-number" id="minutes">35</div>
             <div class="label" id="day">MONDAY</div>
         </div>
     </div>
@@ -140,7 +153,7 @@
     <script>
         function updateClock() {
             const now = new Date();
-            
+
             // 12小時制時間
             let hours = now.getHours();
             const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -148,9 +161,11 @@
             if (hours === 0) {
                 hours = 12;
             }
-            
-            // 日期和星期
-            const date = now.getDate();
+
+            // 分鐘
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            // 星期
             const daysArray = [
                 'SUNDAY',
                 'MONDAY',
@@ -161,20 +176,20 @@
                 'SATURDAY'
             ];
             const dayName = daysArray[now.getDay()];
-            
+
             // 更新 DOM
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('ampm').textContent = ampm;
-            document.getElementById('date').textContent = String(date);
+            document.getElementById('minutes').textContent = minutes;
             document.getElementById('day').textContent = dayName;
         }
 
         // 每秒更新一次
         setInterval(updateClock, 1000);
-        
+
         // 初始化顯示
         updateClock();
     </script>
 </body>
-</html>
 
+</html>
